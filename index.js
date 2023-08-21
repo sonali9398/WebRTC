@@ -1,35 +1,25 @@
-const app = require("express")();
-const server = require("http").createServer(app);
-import cors from "cors";
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import './index.css';
+// import App from './App';
+// import reportWebVitals from './reportWebVitals';
 
-const io = require("socket.io")(server, {
-    cors:{
-        origin:"*",
-        methods:["GET", "POST"]
-    }
-});
-app.use(cors());
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
-const PORT = precess.env.PORT || 5000;
 
-app.get("/", (req, res) =>{
-    res.send("server is running");
-});
+import React from 'react';
+import ReactDOM from 'react-dom';
+import "./App.css";
+import App from "./App";
+import { ContextProvider } from './SocketContext';
+import './App.css';
 
-io.on('connection',(socket) =>{
-    socket.emit('me', socket.id);
-
-    socket.on('disconnect', () =>{
-        socket.broadcast.emit('call ended');
-    });
-
-    socket.on("calluser", ({userToCall, signalData, from, name}) =>{
-        io.to(userToCall).emit("calluser", {signal:signalData, from, name})
-    });
-
-    socket.on("answercall", (data) =>{
-        io.to(data.to).emit("callaccepted", data.signal);
-    })
-})
-
-server.listen(PORT, () =>console.log(`server is listening on port: ${PORT}`));
+ReactDOM.render(
+    <ContextProvider>
+        <App/>
+    </ContextProvider>, document.getElementById('root'));

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography, AppBar } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import VideoPlayer from './component/VideoPlayer';
-import Options from './component/Options';
-import Notifications from './component/Notifications';
+import VideoPlayer from './components/VideoPlayer';
+import Options from './components/Options';
+import Notifications from './components/Notifications';
 
 const useStyles = makeStyles((theme) =>({
   appBar:{
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) =>({
   },
 }));
 
-const App = () => {
+export const App = () => {
   const classes = useStyles();
   return (
     <div className='classes.wrapper'>
@@ -51,4 +51,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
